@@ -26,6 +26,19 @@ int main (){
 	char username1[15], contrasena1[15];
 	int opcion, nPrendas = 0, nUsuarios = 0, i;
 	char genero1;
+	FILE * fentrada;
+	fentrada = fopen("catalogo.txt", "r");
+	if (fentrada == NULL) {
+		printf("Error en la apertura del fichero\n");
+		return 0;
+	}
+			
+	while (fscanf(fentrada, "%s %s %s %c %c %f %d", catalogo[nPrendas].tipoPrenda, catalogo[nPrendas].descripcion, 
+		catalogo[nPrendas].color, &catalogo[nPrendas].talla, &catalogo[nPrendas].genero, &catalogo[nPrendas].precio, &catalogo[nPrendas].udDisponibles) != EOF) {
+		//printf("%s\t %s\t %s\t %c\t %c\t %f\t %d\n", catalogo[nPrendas].tipoPrenda, catalogo[nPrendas].descripcion, catalogo[nPrendas].color, catalogo[nPrendas].talla, catalogo[nPrendas].genero, catalogo[nPrendas].precio, catalogo[nPrendas].udDisponibles);
+		nPrendas++;
+	} 
+	fclose(fentrada);
 	
 	printf("Usted esta en vintage clothes\n");
 	while (1) {
@@ -75,20 +88,8 @@ int main (){
     	case 3:
     		printf("\n");
 		    printf("Esta usted en el catalogo\n");
-		    FILE * fentrada;
-		    fentrada = fopen("catalogo.txt", "r");
-		    if (fentrada == NULL) {
-			    printf("Error en la apertura del fichero\n");
-				return 0;
-			}
-			
-			while (fscanf(fentrada, "%s %s %s %c %c %.2f %d", catalogo[nPrendas].tipoPrenda, catalogo[nPrendas].descripcion, 
-			catalogo[nPrendas].color, &catalogo[nPrendas].talla, &catalogo[nPrendas].genero, &catalogo[nPrendas].precio, &catalogo[nPrendas].udDisponibles) != EOF) {
-				//printf("%s\t %s\t %s\t %c\t %c\t %f\t %d\n", catalogo[nPrendas].tipoPrenda, catalogo[nPrendas].descripcion, catalogo[nPrendas].color, catalogo[nPrendas].talla, catalogo[nPrendas].genero, catalogo[nPrendas].precio, catalogo[nPrendas].udDisponibles);
-				nPrendas++;
-	        } 
-			fclose(fentrada);
-				
+		    
+			//printf("%d", nPrendas);	
 			do {
 				fflush(stdin);
 				printf("\n");
