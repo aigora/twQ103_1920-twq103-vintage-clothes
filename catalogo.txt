@@ -1,0 +1,12 @@
+Camiseta mangaCorta gris S M 19.99 15
+Camiseta mangaCorta gris M M 19.99 20
+Camiseta mangaCorta gris L M 19.99 12
+Camiseta mangaCorta azul S M 19.99 30
+Camiseta mangaCorta azul M M 19.99 27
+Camiseta mangaCorta azul L M 19.99 10
+Camiseta mangaCorta verde S H 19.99 8
+Camiseta mangaCorta verde M H 19.99 23
+Camiseta mangaCorta verde L H 19.99 20
+Camiseta mangaCorta rojo S H 19.99 14
+Camiseta mangaCorta rojo M H 19.99 23
+Camiseta mangaCorta rojo L H 19.99 40
