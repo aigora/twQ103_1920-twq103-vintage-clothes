@@ -24,21 +24,12 @@ int main (){
 	struct TUsuario usuarios[500];
 	
 	char username1[15], contrasena1[15];
-	int opcion, nPrendas = 0, nUsuarios = 0, i;
+	int opcion, nPrendas = 0, nUsuarios = 0, i, longContrasena=0;
 	char genero1;
-	FILE * fentrada;
-	fentrada = fopen("catalogo.txt", "r");
-	if (fentrada == NULL) {
-		printf("Error en la apertura del fichero\n");
-		return 0;
-	}
-			
-	while (fscanf(fentrada, "%s %s %s %c %c %f %d", catalogo[nPrendas].tipoPrenda, catalogo[nPrendas].descripcion, 
-		catalogo[nPrendas].color, &catalogo[nPrendas].talla, &catalogo[nPrendas].genero, &catalogo[nPrendas].precio, &catalogo[nPrendas].udDisponibles) != EOF) {
-		//printf("%s\t %s\t %s\t %c\t %c\t %f\t %d\n", catalogo[nPrendas].tipoPrenda, catalogo[nPrendas].descripcion, catalogo[nPrendas].color, catalogo[nPrendas].talla, catalogo[nPrendas].genero, catalogo[nPrendas].precio, catalogo[nPrendas].udDisponibles);
-		nPrendas++;
-	} 
-	fclose(fentrada);
+	
+	
+	
+	
 	
 	printf("Usted esta en vintage clothes\n");
 	while (1) {
@@ -49,32 +40,35 @@ int main (){
 			printf(" Pulse 1-> si quiere registrarse\n Pulse 2-> si ya esta registrado y desea iniciar sesion\n Pulse 3-> si quiere acceder a nuestro catalogo\n pulse 4-> si quiere salir\n");
 			scanf("%d",&opcion);
 		}  while (opcion != 1 && opcion != 2 && opcion != 3 && opcion != 4 );
+	   
 	
-	
-    
+			
+    	   
     switch(opcion){
     	case 1:
+    	    FILE * pregistro;
+    	    
 		    printf("Introduzca un nombre de usuario\n");
             scanf("%s", usuarios[nUsuarios].username);
             fflush(stdin);
 			printf("Introduzca su nombre\n");
 			gets(usuarios[nUsuarios].nombre);	
-			printf("Introduzca sus apellidos\n");
+			printf("Introduzca sus 2 apellidos\n");
 			scanf("%s %s", usuarios[nUsuarios].apellido1, usuarios[nUsuarios].apellido2);
 			fflush(stdin);
-			printf("Introduzca una contrasena\n");
-			gets(usuarios[nUsuarios].contrasena);
-			nUsuarios++;
 			
-			FILE*pfichero;
-			pfichero = fopen("usuarios.txt", "a");
+			do{
+			  printf("Introduzca una contrasena\n");
+			  gets(usuarios[nUsuarios].contrasena);
+			  longContrasena = strlen (usuarios[nUsuarios].contrasena);
+			  if (longContrasena < 8){
+				printf("Su contrasena tiene que tener 8 caracteres o mas\n");
+			  }	
+			}while (longContrasena < 8);
 			
-			if (pfichero == NULL) {
-			    printf("Error en la creacion del fichero\n");
-				return 0;
-			}
-				
-    	    break;
+			printf("Usted se ha registrado correctamente\n");
+			break;
+			
     	    
     	case 2:
     		printf("Introduzca su nombre de usuario\n");
@@ -88,7 +82,18 @@ int main (){
     	case 3:
     		printf("\n");
 		    printf("Esta usted en el catalogo\n");
-		    
+		    FILE * fentrada;
+	        fentrada = fopen("catalogo.txt", "r");
+           	if (fentrada == NULL) {
+		        printf("Error en la apertura del fichero\n");
+		        return 0;
+	        }
+			
+	        while (fscanf(fentrada, "%s %s %s %c %c %f %d", catalogo[nPrendas].tipoPrenda, catalogo[nPrendas].descripcion, 
+		        catalogo[nPrendas].color, &catalogo[nPrendas].talla, &catalogo[nPrendas].genero, &catalogo[nPrendas].precio, &catalogo[nPrendas].udDisponibles) != EOF) {	
+		    nPrendas++;
+	        } 
+	        fclose(fentrada);
 			//printf("%d", nPrendas);	
 			do {
 				fflush(stdin);
