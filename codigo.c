@@ -80,7 +80,7 @@ int main (){
 		    	//COMPROBAR SI EL USUARIO EXISTE
 		    	printf("Introduzca un nombre de usuario\n");
 				scanf("%s", username2);
-				for (i=0; i<nUsuarios; i++) {
+				for (i = 0; i < nUsuarios; i++) {
 					if (strcmp(usuarios[i].username, username2) == 0) {
 						printf("El nombre de usuario ya esta cogido, por favor escoja otro nombre de usuario\n");
 						break;
@@ -125,7 +125,7 @@ int main (){
 				scanf("%s",contrasena1);
 				fflush(stdin);
 				printf("\n");
-				for (i=0; i<nUsuarios; i++) {
+				for (i = 0; i <= nUsuarios; i++) {
 					if (strcmp(usuarios[i].username, username1) == 0 && strcmp(usuarios[i].contrasena, contrasena1) == 0) {
 						printf("Usuario y contrasena correcto, usted ha iniciado sesion correctamente...\n");
 						comprobar = 1;
