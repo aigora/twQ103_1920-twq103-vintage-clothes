@@ -54,7 +54,7 @@ int main (){
 		//printf("%s\t %s\t %s\t %s\t %s\n", usuarios[nUsuarios].username, usuarios[nUsuarios].nombre, usuarios[nUsuarios].apellido1, usuarios[nUsuarios].apellido2, usuarios[nUsuarios].contrasena);
 		nUsuarios++;
 	} 
-	
+	//printf("%d\n", nUsuarios);
 	fclose(pregistro);
 	
 	//INICIO DEL PROGRAMA
@@ -89,7 +89,7 @@ int main (){
 			} while (strcmp(usuarios[i].username, username2) == 0);
 			
 			if (strcmp(usuarios[i].username, username2) != 0) {
-				    nUsuarios++;
+				    //nUsuarios++;
 					strcpy(usuarios[nUsuarios].username, username2);
 			}
             fflush(stdin);
@@ -109,11 +109,12 @@ int main (){
 			}while (longContrasena < 8);
 			
 			printf("Usted se ha registrado correctamente\n");
+			//printf("%d\n", nUsuarios);
 			
 		break;
     	    
     	case 2:
-    		//INICIO DE SESION DE USUARIO
+    		//INICIO DE SESION DEL USUARIO
     		do {
     			comprobar = 0;
     			printf("\n");
@@ -166,7 +167,30 @@ int main (){
     	case 4:
     		//SALIR DEL PROGAMA
     		printf("Hasta pronto...\n");
+    		fflush(stdin);
+    		printf("\n");
+    		/*for (i= 0; i <= nUsuarios; i++) {
+    			printf("%s %s %s %s %s\n", usuarios[i].username, usuarios[i].nombre, usuarios[i].apellido1, usuarios[i].apellido2, usuarios[i].contrasena);
+			}*/
     		
+    		//REESCRIBIR EL FICHERO USUARIOS
+    		FILE * pfregistro;
+    		pfregistro = fopen("usuarios.txt", "w"); 
+    		
+    		for (i= 0; i <= nUsuarios; i++) {
+    			fprintf(pfregistro, "%s %s %s %s %s\n", usuarios[i].username, usuarios[i].nombre, usuarios[i].apellido1, usuarios[i].apellido2, usuarios[i].contrasena);
+			}
+    		fclose(pfregistro);
+    		
+    		fflush(stdin);
+    		
+    		//REESCRIBIR EL FICHERO CATALOGO
+    		FILE * pfcatalogo;
+    		pfcatalogo = fopen("catalogo.txt", "w"); 
+    		for (i = 0; i <= nPrendas; i++) {
+    			fprintf(pfcatalogo, "%s %s %s %c %c %f %d", catalogo[i].tipoPrenda, catalogo[i].descripcion, catalogo[i].color, catalogo[i].talla, catalogo[i].genero, catalogo[i].precio, catalogo[i].udDisponibles);
+			}
+    		fclose(pfcatalogo);
     		return 0;
     		
     	break;
