@@ -107,7 +107,7 @@ int main (){
 				    printf("Su contrasena tiene que tener 8 caracteres o mas\n");
 				}	
 			}while (longContrasena < 8);
-			
+			nUsuarios++;
 			printf("Usted se ha registrado correctamente\n");
 			//printf("%d\n", nUsuarios);
 			
@@ -125,7 +125,7 @@ int main (){
 				scanf("%s",contrasena1);
 				fflush(stdin);
 				printf("\n");
-				for (i = 0; i <= nUsuarios; i++) {
+				for (i = 0; i < nUsuarios; i++) {
 					if (strcmp(usuarios[i].username, username1) == 0 && strcmp(usuarios[i].contrasena, contrasena1) == 0) {
 						printf("Usuario y contrasena correcto, usted ha iniciado sesion correctamente...\n");
 						comprobar = 1;
@@ -179,7 +179,7 @@ int main (){
     		FILE * pfregistro;
     		pfregistro = fopen("usuarios.txt", "w"); 
     		
-    		for (i= 0; i <= nUsuarios; i++) {
+    		for (i= 0; i < nUsuarios; i++) {
     			fprintf(pfregistro, "%s %s %s %s %s\n", usuarios[i].username, usuarios[i].nombre, usuarios[i].apellido1, usuarios[i].apellido2, usuarios[i].contrasena);
 			}
     		fclose(pfregistro);
