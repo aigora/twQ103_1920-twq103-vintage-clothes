@@ -145,7 +145,7 @@ int main (){
     		printf("\n");
 		    printf("Esta usted en el catalogo\n");
 		    
-			printf("%d", nPrendas);	
+			//printf("%d", nPrendas);	
 			do {
 				fflush(stdin);
 				printf("\n");
@@ -154,6 +154,8 @@ int main (){
 				printf("\n");
 				
 				if (genero1 == 'H' || genero1 == 'M') {
+					printf("TIPO DE PRENDA\t  DESCRIPCION\t  COLOR\t  TALLA\t  PRECIO      UNIDADES DISPONIBLES\n");
+					printf("\n");
 					for (i = 0; i < nPrendas; i++) {
 						if (catalogo[i].genero == genero1) {
 							printf("%s\t %s\t %s\t %c\t %.2f\t %d\n", catalogo[i].tipoPrenda, catalogo[i].descripcion, catalogo[i].color, catalogo[i].talla, catalogo[i].precio, catalogo[i].udDisponibles);
@@ -188,7 +190,7 @@ int main (){
     		FILE * pfcatalogo;
     		pfcatalogo = fopen("catalogo.txt", "w"); 
     		for (i = 0; i <= nPrendas; i++) {
-    			fprintf(pfcatalogo, "%s %s %s %c %c %f %d", catalogo[i].tipoPrenda, catalogo[i].descripcion, catalogo[i].color, catalogo[i].talla, catalogo[i].genero, catalogo[i].precio, catalogo[i].udDisponibles);
+    			fprintf(pfcatalogo, "%s %s %s %c %c %f %d\n", catalogo[i].tipoPrenda, catalogo[i].descripcion, catalogo[i].color, catalogo[i].talla, catalogo[i].genero, catalogo[i].precio, catalogo[i].udDisponibles);
 			}
     		fclose(pfcatalogo);
     		return 0;
