@@ -189,7 +189,7 @@ int main (){
     		//REESCRIBIR EL FICHERO CATALOGO
     		FILE * pfcatalogo;
     		pfcatalogo = fopen("catalogo.txt", "w"); 
-    		for (i = 0; i <= nPrendas; i++) {
+    		for (i = 0; i < nPrendas; i++) {
     			fprintf(pfcatalogo, "%s %s %s %c %c %f %d\n", catalogo[i].tipoPrenda, catalogo[i].descripcion, catalogo[i].color, catalogo[i].talla, catalogo[i].genero, catalogo[i].precio, catalogo[i].udDisponibles);
 			}
     		fclose(pfcatalogo);
