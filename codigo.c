@@ -4,6 +4,7 @@ void Banner();
 int menu1();
 int menu2();
 struct TPrenda {
+	int nReferencia;
 	char tipoPrenda[100];
 	char descripcion[200];
 	char color[50];
@@ -26,7 +27,7 @@ int main (){
 	struct TUsuario usuarios[1000];
 	
 	char username1[15], contrasena1[15], username2[15];
-	int opcion, nPrendas = 0, nUsuarios = 0, i, longContrasena, comprobar = 0;
+	int opcion, nPrendas = 0, nUsuarios = 0, i, longContrasena, comprobar = 0, opcion2;
 	char genero1;
 	
 	// APERTURA DEL CATALOGO
@@ -104,7 +105,13 @@ int main (){
 			nUsuarios++;
 			printf("Usted se ha registrado correctamente\n");
 			//printf("%d\n", nUsuarios);
-			
+			opcion2=menu2();
+			switch(opcion2){
+				case 1:
+					printf("Opcion comprar");
+				case 2:	
+				    printf("Opcion vender");
+			}
 		break;
     	    
     	case 2:
