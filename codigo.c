@@ -1,8 +1,9 @@
 #include <stdio.h>
 #include <string.h>
-
+void Banner();
+int menu1();
+int menu2();
 struct TPrenda {
-	int nReferencia;
 	char tipoPrenda[100];
 	char descripcion[200];
 	char color[50];
@@ -20,18 +21,12 @@ struct TUsuario {
 	char contrasena[15];
 };
 
-void MostrarBanner();
-
-int menu1();
-
-int menu2();
-
 int main (){
-	struct TPrenda catalogo[500];
-	struct TUsuario usuarios[100];
+	struct TPrenda catalogo[5000];
+	struct TUsuario usuarios[1000];
 	
 	char username1[15], contrasena1[15], username2[15];
-	int opcion, opcion2, nPrendas = 0, nUsuarios = 0, i, longContrasena, comprobar = 0, prendas = 1, prendas2;
+	int opcion, nPrendas = 0, nUsuarios = 0, i, longContrasena, comprobar = 0;
 	char genero1;
 	
 	// APERTURA DEL CATALOGO
@@ -42,7 +37,7 @@ int main (){
 		return 0;
 	}
 			
-	while (fscanf(fentrada, "%d %s %s %s %c %c %f %d", catalogo[nPrendas].nReferencia, catalogo[nPrendas].tipoPrenda, catalogo[nPrendas].descripcion, 
+	while (fscanf(fentrada, "%s %s %s %c %c %f %d", catalogo[nPrendas].tipoPrenda, catalogo[nPrendas].descripcion, 
 		catalogo[nPrendas].color, &catalogo[nPrendas].talla, &catalogo[nPrendas].genero, &catalogo[nPrendas].precio, &catalogo[nPrendas].udDisponibles) != EOF) {
 		nPrendas++;
 	} 
@@ -65,14 +60,12 @@ int main (){
 	fclose(pregistro);
 	
 	//INICIO DEL PROGRAMA
-	printf("Usted esta...\n");
-	printf("\n");
-	MostrarBanner();
+	Banner();
+
 	while (1) {
 		
 		//MENU DE OPCIONES
-		opcion = menu1();
-		
+		opcion=menu1();
 		//OPCIONES
 		switch(opcion){
     	case 1:
@@ -138,56 +131,6 @@ int main (){
 					}
 			} while (strcmp(usuarios[i].username, username1) != 0 || strcmp(usuarios[i].contrasena, contrasena1) != 0);
     		
-    		opcion2 = menu2();
-    		
-    		switch (opcion2) {
-    			case 1:
-    				// Comprar
-    				do {
-					    fflush(stdin);
-						printf("\n");
-						printf("Introduzca si quiere ver ropa de hombre (H) o mujer (M)\n");
-						scanf("%c", &genero1);
-						printf("\n");
-						
-						if (genero1 == 'H' || genero1 == 'M') {
-							printf("  NUMERO DE REFERENCIA    TIPO DE PRENDA\t  DESCRIPCION\t  COLOR\t  TALLA\t  PRECIO      UNIDADES DISPONIBLES\n");
-							printf("\n");
-							for (i = 0; i < nPrendas; i++) {
-							    if (catalogo[i].genero == genero1) {
-								    printf("%d. -> %d\t %s\t %s\t %s\t %c\t %.2f\t %d\n", prendas, catalogo[i].nReferencia, catalogo[i].tipoPrenda, catalogo[i].descripcion, catalogo[i].color, catalogo[i].talla, catalogo[i].precio, catalogo[i].udDisponibles);
-								    prendas++;
-							    }
-						    }
-					    }
-				    } while (genero1 != 'M' && genero1 != 'H');	
-				    
-				    do {
-				    	printf("\n");
-						printf("Por favor ponga el numero de referencia de la prenda que desee comprar: \n ");
-						scanf("%d", prendas2);
-						
-						if (prendas2 < catalogo[0].nReferencia || prendas2 > catalogo[nPrendas].nReferencia) {
-							printf("El numero de referencia introducido no existe. \n");
-						}
-						
-					} while (prendas2 < catalogo[0].nReferencia || prendas2 > catalogo[nPrendas].nReferencia);
-				    
-				    for (i = 0; i < nPrendas; i++ ) {
-				    	if (prendas == catalogo[i].nReferencia) {
-				    		catalogo[i].udDisponibles = catalogo[i].udDisponibles - 1;
-				    		printf("\n");
-				    		printf("Su compra se ha realizado correctamente, gracias por comprar en vintage clothes...\n");
-				    		printf("\n");
-						}
-					}
-					
-    			break;	
-    			
-    			case 2:
-    				// Vender
-    			break;	
-			}
 			
     	break;
     	    
@@ -241,7 +184,7 @@ int main (){
     		FILE * pfcatalogo;
     		pfcatalogo = fopen("catalogo.txt", "w"); 
     		for (i = 0; i < nPrendas; i++) {
-    			fprintf(pfcatalogo, "%d %s %s %s %c %c %f %d\n", catalogo[i].nReferencia, catalogo[i].tipoPrenda, catalogo[i].descripcion, catalogo[i].color, catalogo[i].talla, catalogo[i].genero, catalogo[i].precio, catalogo[i].udDisponibles);
+    			fprintf(pfcatalogo, "%s %s %s %c %c %f %d\n", catalogo[i].tipoPrenda, catalogo[i].descripcion, catalogo[i].color, catalogo[i].talla, catalogo[i].genero, catalogo[i].precio, catalogo[i].udDisponibles);
 			}
     		fclose(pfcatalogo);
     		return 0;
@@ -256,8 +199,14 @@ int main (){
     
 	return 0;
 }
-
-int menu1() {
+void Banner(){
+	printf("                      -------------------\n");
+	printf(" ------------------->");
+	printf(" | Vintage clothes |");
+	printf(" <-------------------\n");
+	printf("                      -------------------\n");
+}
+int menu1(){
 	int opcion;
 	do {
 		printf("\n");
@@ -268,12 +217,9 @@ int menu1() {
 		fflush(stdin);
 		scanf("%d",&opcion);
 	}  while (opcion != 1 && opcion != 2 && opcion != 3 && opcion != 4 );
-		
-	
 	return opcion;
 }
-
-int menu2() {
+int menu2(){
 	int opcion;
 	do {
     	printf("\n");
@@ -287,14 +233,4 @@ int menu2() {
 	
 	return opcion;
 }
-
-void MostrarBanner() {
-	printf("                      -------------------\n");
-	printf(" ------------------->");
-	printf(" | Vintage clothes |");
-	printf(" <-------------------\n");
-	printf("                      -------------------\n");
-}
-
-
 
