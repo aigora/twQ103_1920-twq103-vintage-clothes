@@ -20,11 +20,11 @@ struct TUsuario {
 	char contrasena[15];
 };
 
-MostrarBanner();
+void MostrarBanner();
 
-menu1();
+int menu1();
 
-menu2();
+int menu2();
 
 int main (){
 	struct TPrenda catalogo[500];
@@ -257,15 +257,15 @@ int main (){
 	return 0;
 }
 
-menu1() {
+int menu1() {
 	int opcion;
-	
 	do {
 		printf("\n");
 		printf("Seleccione la opcion que desee realizar\n");
 		printf("\n");
 		printf(" Pulse 1---> si quiere registrarse\n Pulse 2---> si ya esta registrado y desea iniciar sesion\n Pulse 3---> si quiere acceder a nuestro catalogo\n pulse 4---> si quiere salir\n");
 		printf("\n");
+		fflush(stdin);
 		scanf("%d",&opcion);
 	}  while (opcion != 1 && opcion != 2 && opcion != 3 && opcion != 4 );
 		
@@ -273,7 +273,7 @@ menu1() {
 	return opcion;
 }
 
-menu2() {
+int menu2() {
 	int opcion;
 	do {
     	printf("\n");
@@ -281,13 +281,14 @@ menu2() {
 		printf("\n");
 		printf(" Pulse 1---> si quiere comprar un articulo\n Pulse 2---> si quiere vender un articulo\n ");
 		printf("\n");
+		fflush(stdin);
 		scanf("%d",&opcion);
 			} while (opcion != 1 && opcion != 2);
 	
 	return opcion;
 }
 
-MostrarBanner() {
+void MostrarBanner() {
 	printf("                      -------------------\n");
 	printf(" ------------------->");
 	printf(" | Vintage clothes |");
