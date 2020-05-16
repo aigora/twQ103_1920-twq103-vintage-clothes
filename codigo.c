@@ -33,7 +33,7 @@ int main (){
 	
 	char username1[15], contrasena1[15], username2[15];
 	int opcion, opcion2, opcion3, opcion4; 
-	int nPrendas = 0, nUsuarios = 0, i, longContrasena, comprobar = 0, comprobar2 = 0;
+	int nPrendas = 0, nUsuarios = 0, i, longContrasena, comprobar = 0, comprobar2 = 0, comprobar3 = 0;
 	int prendas2, nReferencia, n;
 	char genero1;
 	
@@ -195,11 +195,15 @@ int main (){
     				printf("1--> para dar de alta un articulo nuevo.\n2--> para añadir unidades a un articulo ya existente. \n");
     				scanf("%d", &opcion4);
     				if(opcion4 == 1) {
+    					// Si quieres dar de alta uno nuevo
     					printf("\n");
     					printf("Introduzca un numero de referencia que contenga 4 cifras:\n");
     				    scanf("%d", &nReferencia);
+    				    
+    				    // Comprobar si ya existe
 					    for (i = 0; i < nPrendas; i++) {
 						    if (nReferencia == catalogo[i].nReferencia) {
+						    	// Si existe darte la opcion de añadir unidades
 						        printf("El numero de referencia coincide con uno ya existente, es este el articulo que quieres subir al catalogo? \n");
 						        printf("\n");
 						        printf("N DE REFERENCIA    TIPO DE PRENDA\t  DESCRIPCION\t  COLOR\t  TALLA\t  PRECIO      UNIDADES DISPONIBLES\n");
@@ -215,6 +219,7 @@ int main (){
 						    	    scanf("%d", &n);
 						    	    catalogo[i].udDisponibles = catalogo[i].udDisponibles + n;
 							    }
+							    // Si existe pero no quieres añadir unidades, puedes volver a poner otro numero de referencia
 								if (opcion3 == 2) {
 									printf("Introduzca un numero de referencia que contenga 4 cifras:\n");
     				                scanf("%d", &nReferencia);
@@ -234,13 +239,35 @@ int main (){
 									scanf("%f", &catalogo[nPrendas].precio);
 									printf("Introduzca las unidades que quiere subir: \n");
 									scanf("%d", &catalogo[nPrendas].udDisponibles);
-								} 
+								}
+								comprobar3++; 
 						    }
 					    }
+					    // Si no existe te pide los datos de la prenda
+					    if (comprobar3 == 0) {
+					    	nPrendas++;
+							nReferencia = catalogo[nPrendas].nReferencia;
+							printf("Introduzca el tipo de prenda: \n");
+							scanf("%s", catalogo[nPrendas].tipoPrenda);
+							printf("Introduzca una breve descripcion (ejemplo: MangaCorta) en una sola palabra:");
+							scanf("%s", catalogo[nPrendas].descripcion);
+							printf("Introduzca el color de la prenda: \n");
+							scanf("%s", catalogo[nPrendas].color);
+							printf("Introduzca la talla de la prenda: \n");
+							scanf("%c", &catalogo[nPrendas].talla);
+							printf("Introduzca el genero donde quiere que aparezca la prenda (M o H): \n");
+							scanf("%c", &catalogo[nPrendas].genero);
+							printf("Introduzca el precio de la prenda: \n");
+							scanf("%f", &catalogo[nPrendas].precio);
+							printf("Introduzca las unidades que quiere subir: \n");
+							scanf("%d", &catalogo[nPrendas].udDisponibles);
+						}
 					    printf("\n");
 					    printf ("Usted ha registrado un articulo correctamente...\n");
 					    printf("\n");
 					}
+					
+					// Si quieres añadir unidades de un articulo existente
     				if (opcion4 == 2) {
     					do {
     						printf("\n");
