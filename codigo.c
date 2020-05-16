@@ -1,8 +1,13 @@
 #include <stdio.h>
 #include <string.h>
+
+
 void Banner();
+
 int menu1();
+
 int menu2();
+
 struct TPrenda {
 	int nReferencia;
 	char tipoPrenda[100];
@@ -27,7 +32,9 @@ int main (){
 	struct TUsuario usuarios[1000];
 	
 	char username1[15], contrasena1[15], username2[15];
-	int opcion, opcion2, nPrendas = 0, nUsuarios = 0, i, longContrasena, comprobar = 0, prendas2;
+	int opcion, opcion2, opcion3, opcion4; 
+	int nPrendas = 0, nUsuarios = 0, i, longContrasena, comprobar = 0, comprobar2 = 0;
+	int prendas2, nReferencia, n;
 	char genero1;
 	
 	// APERTURA DEL CATALOGO
@@ -132,7 +139,7 @@ int main (){
 					}
 			} while (strcmp(usuarios[i].username, username1) != 0 || strcmp(usuarios[i].contrasena, contrasena1) != 0);
     		
-    			// Comprar y vender
+    		// Comprar y vender
     		opcion2 = menu2();
     		
     		switch (opcion2) {
@@ -146,7 +153,7 @@ int main (){
 						printf("\n");
 						
 						if (genero1 == 'H' || genero1 == 'M') {
-							printf("  NUMERO DE REFERENCIA    TIPO DE PRENDA\t  DESCRIPCION\t  COLOR\t  TALLA\t  PRECIO      UNIDADES DISPONIBLES\n");
+							printf(" N DE REFERENCIA    TIPO DE PRENDA\t  DESCRIPCION\t  COLOR\t  TALLA\t  PRECIO      UNIDADES DISPONIBLES\n");
 							printf("\n");
 							for (i = 0; i < nPrendas; i++) {
 							    if (catalogo[i].genero == genero1) {
@@ -162,7 +169,9 @@ int main (){
 						scanf("%d", &prendas2);
 						
 						if (prendas2 < catalogo[0].nReferencia || prendas2 > catalogo[nPrendas].nReferencia) {
+							printf("\n");
 							printf("El numero de referencia introducido no existe. \n");
+							printf("\n");
 						}
 						
 					} while (prendas2 < catalogo[0].nReferencia && prendas2 > catalogo[nPrendas].nReferencia);
@@ -180,6 +189,85 @@ int main (){
     			
     			case 2:
     				// Vender
+    				
+    				printf("Quiere vender un articulo ya existente en la web o quiere dar de alta un articulo nuevo? \n");
+    				printf("\n");
+    				printf("1--> para dar de alta un articulo nuevo.\n2--> para añadir unidades a un articulo ya existente. \n");
+    				scanf("%d", &opcion4);
+    				if(opcion4 == 1) {
+    					printf("\n");
+    					printf("Introduzca un numero de referencia que contenga 4 cifras:\n");
+    				    scanf("%d", &nReferencia);
+					    for (i = 0; i < nPrendas; i++) {
+						    if (nReferencia == catalogo[i].nReferencia) {
+						        printf("El numero de referencia coincide con uno ya existente, es este el articulo que quieres subir al catalogo? \n");
+						        printf("\n");
+						        printf("N DE REFERENCIA    TIPO DE PRENDA\t  DESCRIPCION\t  COLOR\t  TALLA\t  PRECIO      UNIDADES DISPONIBLES\n");
+						        printf("  %d\t %s\t %s\t %s\t %c\t %.2f\t %d\n", catalogo[i].nReferencia, catalogo[i].tipoPrenda, catalogo[i].descripcion, catalogo[i].color, catalogo[i].talla, catalogo[i].precio, catalogo[i].udDisponibles);
+						        printf("\n");
+						        printf("\n");
+						        printf("1 --> para si \n2 --> para no\n");
+						        scanf("%d", &opcion3);
+						    	
+						        if (opcion3 == 1) {
+						        	printf("\n");
+						    	    printf("Introoduzca el numero de unidades que quiere subir a vintage clothes de la prenda con numero de referencia %d: \n", nReferencia);
+						    	    scanf("%d", &n);
+						    	    catalogo[i].udDisponibles = catalogo[i].udDisponibles + n;
+							    }
+								if (opcion3 == 2) {
+									printf("Introduzca un numero de referencia que contenga 4 cifras:\n");
+    				                scanf("%d", &nReferencia);
+						            nPrendas++;
+									nReferencia = catalogo[nPrendas].nReferencia;
+									printf("Introduzca el tipo de prenda: \n");
+									scanf("%s", catalogo[nPrendas].tipoPrenda);
+									printf("Introduzca una breve descripcion (ejemplo: MangaCorta) en una sola palabra:");
+									scanf("%s", catalogo[nPrendas].descripcion);
+									printf("Introduzca el color de la prenda: \n");
+									scanf("%s", catalogo[nPrendas].color);
+									printf("Introduzca la talla de la prenda: \n");
+									scanf("%c", &catalogo[nPrendas].talla);
+									printf("Introduzca el genero donde quiere que aparezca la prenda (M o H): \n");
+									scanf("%c", &catalogo[nPrendas].genero);
+									printf("Introduzca el precio de la prenda: \n");
+									scanf("%f", &catalogo[nPrendas].precio);
+									printf("Introduzca las unidades que quiere subir: \n");
+									scanf("%d", &catalogo[nPrendas].udDisponibles);
+								} 
+						    }
+					    }
+					    printf("\n");
+					    printf ("Usted ha registrado un articulo correctamente...\n");
+					    printf("\n");
+					}
+    				if (opcion4 == 2) {
+    					do {
+    						printf("\n");
+    						printf("Introduzca un numero de referencia que contenga 4 cifras al cual quiere aumentar las unidades en stock:\n");
+    				        scanf("%d", &nReferencia);
+    				        for (i = 0; i < nPrendas; i++) {
+    				    	    if (nReferencia == catalogo[i].nReferencia) {
+    				    	    	printf("\n");
+    				    		    printf("Hemos encontrado la prenda corrrectamente...\n");
+    				    		    printf("\n");
+    				    		    printf("\n");
+    				    		    printf("Introoduzca el numero de unidades que quiere subir a vintage clothes de la prenda con numero de referencia %d: \n", nReferencia);
+						    	    scanf("%d", &n);
+						    	    catalogo[i].udDisponibles = catalogo[i].udDisponibles + n;
+						    	    comprobar2++;
+						    	    printf("\n");
+						    	    printf ("Usted ha registrado un articulo correctamente...\n");
+							    }
+						    }
+						    if (comprobar2 == 0) {
+						    	printf("\n");
+							    printf("No se encuentra el numero de referencia, porfavor intentelo de nuevo...\n");
+						    }
+						} while (comprobar2 == 0);
+						    
+					}
+					
     			break;	
 			}
 			
@@ -257,6 +345,7 @@ void Banner(){
 	printf(" <-------------------\n");
 	printf("                      -------------------\n");
 }
+
 int menu1(){
 	int opcion;
 	do {
@@ -270,6 +359,7 @@ int menu1(){
 	}  while (opcion != 1 && opcion != 2 && opcion != 3 && opcion != 4 );
 	return opcion;
 }
+
 int menu2(){
 	int opcion;
 	do {
