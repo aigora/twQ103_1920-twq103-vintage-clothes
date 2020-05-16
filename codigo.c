@@ -32,8 +32,8 @@ int main (){
 	struct TUsuario usuarios[1000];
 	
 	char username1[15], contrasena1[15], username2[15];
-	int opcion, opcion2, opcion3, opcion4; 
-	int nPrendas = 0, nUsuarios = 0, i, longContrasena, comprobar = 0, comprobar2 = 0, comprobar3 = 0;
+	int opcion, opcion2, opcion3, opcion4, opcion5; 
+	int nPrendas = 0, nUsuarios = 0, i, longContrasena, comprobar = 0, comprobar2 = 0, comprobar3 = 0, comprobar5 = 0;
 	int prendas2, nReferencia, n;
 	char genero1;
 	
@@ -111,7 +111,196 @@ int main (){
 			}while (longContrasena < 8);
 			nUsuarios++;
 			printf("Usted se ha registrado correctamente\n");
+			printf("\n");
 			//printf("%d\n", nUsuarios);
+			printf("Usted ha iniciado sesion correctamente\n");
+			printf("\n");
+			opcion2 = menu2();
+    		
+    	    switch (opcion2) {
+    			case 1:
+    			// Comprar
+    				do {
+					    fflush(stdin);
+						printf("\n");
+						printf("Introduzca si quiere ver ropa de hombre (H) o mujer (M)\n");
+						scanf("%c", &genero1);
+						printf("\n");
+						
+						if (genero1 == 'H' || genero1 == 'M') {
+							printf(" N DE REFERENCIA    TIPO DE PRENDA\t  DESCRIPCION\t  COLOR\t  TALLA\t  PRECIO      UNIDADES DISPONIBLES\n");
+							printf("\n");
+							for (i = 0; i < nPrendas; i++) {
+							    if (catalogo[i].genero == genero1) {
+								    printf("  %d\t %s\t %s\t %s\t %c\t %.2f\t %d\n", catalogo[i].nReferencia, catalogo[i].tipoPrenda, catalogo[i].descripcion, catalogo[i].color, catalogo[i].talla, catalogo[i].precio, catalogo[i].udDisponibles);
+							    }
+						    }
+					    }
+				    } while (genero1 != 'M' && genero1 != 'H');	
+				    
+				    do {
+				    	printf("\n");
+					    printf("Por favor ponga el numero de referencia de la prenda que desee comprar: \n ");
+						scanf("%d", &prendas2);
+						
+						if (prendas2 < catalogo[0].nReferencia || prendas2 > catalogo[nPrendas].nReferencia) {
+							printf("\n");
+							printf("El numero de referencia introducido no existe. \n");
+							
+							printf("\n");
+						}
+						
+					} while (prendas2 < catalogo[0].nReferencia && prendas2 > catalogo[nPrendas].nReferencia);
+				    
+				    for (i = 0; i < nPrendas; i++ ) {
+				    	if (prendas2 == catalogo[i].nReferencia) {
+				    		catalogo[i].udDisponibles = catalogo[i].udDisponibles - 1;
+				    		printf("\n");
+				    		printf("Su compra se ha realizado correctamente, gracias por comprar en vintage clothes...\n");
+				    		printf("\n");
+				    		break;
+						}
+					}
+					
+    			break;	
+    			
+    			case 2:
+    				// Vender
+    				
+    				printf("Quiere vender un articulo ya existente en la web o quiere dar de alta un articulo nuevo? \n");
+    				printf("\n");
+    				printf("1--> para dar de alta un articulo nuevo.\n2--> para añadir unidades a un articulo ya existente. \n");
+    				scanf("%d", &opcion4);
+    				if(opcion4 == 1) {
+    					comprobar3 = 0;
+    					// Si quieres dar de alta uno nuevo
+    					printf("\n");
+    					printf("Introduzca un numero de referencia que contenga 4 cifras:\n");
+    				    scanf("%d", &nReferencia);
+    				    
+    				    // Comprobar si ya existe
+					    for (i = 0; i < nPrendas; i++) {
+						    if (nReferencia == catalogo[i].nReferencia) {
+						    	// Si existe darte la opcion de añadir unidades o meter otro numero de referencia.
+						    	
+						        printf("El numero de referencia coincide con uno ya existente, es este el articulo que quieres subir al catalogo? \n");
+						        printf("\n");
+						        printf("N DE REFERENCIA    TIPO DE PRENDA\t  DESCRIPCION\t  COLOR\t  TALLA\t  PRECIO      UNIDADES DISPONIBLES\n");
+						        printf("  %d\t %s\t %s\t %s\t %c\t %.2f\t %d\n", catalogo[i].nReferencia, catalogo[i].tipoPrenda, catalogo[i].descripcion, catalogo[i].color, catalogo[i].talla, catalogo[i].precio, catalogo[i].udDisponibles);
+						        printf("\n");
+						        printf("\n");
+						        printf("1 --> para si \n2 --> para no\n");
+						        scanf("%d", &opcion3);
+						    	
+						    	// Si existe y desea añadir unidades
+						        if (opcion3 == 1) {
+						        	printf("\n");
+						    	    printf("Introoduzca el numero de unidades que quiere subir a vintage clothes de la prenda con numero de referencia %d: \n", nReferencia);
+						    	    scanf("%d", &n);
+						    	    catalogo[i].udDisponibles = catalogo[i].udDisponibles + n;
+							    }
+							    // Si existe pero no quieres añadir unidades, puedes volver a poner otro numero de referencia
+								if (opcion3 == 2) {
+									do {
+										// Se comprueba otra vez si existe o no el numero de referencia y no deja continuar hasta que se meta uno que no exista
+										comprobar5 = 0;
+										printf("Introduzca un numero de referencia que contenga 4 cifras:\n");
+    				                    scanf("%d", &nReferencia);
+										for (i = 0; i < nPrendas; i++) {
+											if (nReferencia == catalogo[i].nReferencia) {
+										        comprobar5++;
+										        printf("El numero de referencia ya existe...\n");
+										        fflush(stdin);
+										        printf("\n");
+										    }
+										}
+									} while (comprobar5 != 0);
+									
+						            nPrendas++;
+									nReferencia = catalogo[nPrendas].nReferencia;
+									printf("Introduzca el tipo de prenda: \n");
+									scanf("%s", catalogo[nPrendas].tipoPrenda);
+									fflush(stdin);
+									printf("Introduzca una breve descripcion (ejemplo: MangaCorta) en una sola palabra:");
+									scanf("%s", catalogo[nPrendas].descripcion);
+									fflush(stdin);
+									printf("Introduzca el color de la prenda: \n");
+									scanf("%s", catalogo[nPrendas].color);
+									fflush(stdin);
+									printf("Introduzca la talla de la prenda: \n");
+									scanf("%c", &catalogo[nPrendas].talla);
+									fflush(stdin);
+									printf("Introduzca el genero donde quiere que aparezca la prenda (M o H): \n");
+									scanf("%c", &catalogo[nPrendas].genero);
+									fflush(stdin);
+									printf("Introduzca el precio de la prenda: \n");
+									scanf("%f", &catalogo[nPrendas].precio);
+									printf("Introduzca las unidades que quiere subir: \n");
+									scanf("%d", &catalogo[nPrendas].udDisponibles);
+								}
+								comprobar3++; 
+						    }
+					    }
+					    // Si no existe te pide los datos de la prenda
+					    if (comprobar3 == 0) {
+					    	nPrendas++;
+							nReferencia = catalogo[nPrendas].nReferencia;
+							printf("Introduzca el tipo de prenda: \n");
+							scanf("%s", catalogo[nPrendas].tipoPrenda);
+							fflush(stdin);
+							printf("Introduzca una breve descripcion (ejemplo: MangaCorta) en una sola palabra:");
+							scanf("%s", catalogo[nPrendas].descripcion);
+							fflush(stdin);
+							printf("Introduzca el color de la prenda: \n");
+							scanf("%s", catalogo[nPrendas].color);
+							fflush(stdin);
+							printf("Introduzca la talla de la prenda: \n");
+							scanf("%c", &catalogo[nPrendas].talla);
+							fflush(stdin);
+							printf("Introduzca el genero donde quiere que aparezca la prenda (M o H): \n");
+							scanf("%c", &catalogo[nPrendas].genero);
+							fflush(stdin);
+							printf("Introduzca el precio de la prenda: \n");
+							scanf("%f", &catalogo[nPrendas].precio);
+							printf("Introduzca las unidades que quiere subir: \n");
+							scanf("%d", &catalogo[nPrendas].udDisponibles);
+						}
+					    printf("\n");
+					    printf ("Usted ha registrado un articulo correctamente...\n");
+					    printf("\n");
+					}
+					
+					// Si quieres añadir unidades de un articulo existente
+    				if (opcion4 == 2) {
+    					comprobar2 = 0;
+    					do {
+    						printf("\n");
+    						printf("Introduzca un numero de referencia que contenga 4 cifras al cual quiere aumentar las unidades en stock:\n");
+    				        scanf("%d", &nReferencia);
+    				        for (i = 0; i < nPrendas; i++) {
+    				    	    if (nReferencia == catalogo[i].nReferencia) {
+    				    	    	printf("\n");
+    				    		    printf("Hemos encontrado la prenda corrrectamente...\n");
+    				    		    printf("\n");
+    				    		    printf("\n");
+    				    		    printf("Introoduzca el numero de unidades que quiere subir a vintage clothes de la prenda con numero de referencia %d: \n", nReferencia);
+						    	    scanf("%d", &n);
+						    	    catalogo[i].udDisponibles = catalogo[i].udDisponibles + n;
+						    	    comprobar2++;
+						    	    printf("\n");
+						    	    printf ("Usted ha registrado un articulo correctamente...\n");
+							    }
+						    }
+						    if (comprobar2 == 0) {
+						    	printf("\n");
+							    printf("No se encuentra el numero de referencia, porfavor intentelo de nuevo...\n");
+						    }
+						} while (comprobar2 == 0);
+						    
+					}
+					
+    			break;	
+			}
 			
 		break;
     	    
@@ -171,6 +360,7 @@ int main (){
 						if (prendas2 < catalogo[0].nReferencia || prendas2 > catalogo[nPrendas].nReferencia) {
 							printf("\n");
 							printf("El numero de referencia introducido no existe. \n");
+							
 							printf("\n");
 						}
 						
@@ -205,7 +395,7 @@ int main (){
     				    // Comprobar si ya existe
 					    for (i = 0; i < nPrendas; i++) {
 						    if (nReferencia == catalogo[i].nReferencia) {
-						    	// Si existe darte la opcion de añadir unidades
+						    	// Si existe darte la opcion de añadir unidades o meter otro numero de referencia.
 						    	
 						        printf("El numero de referencia coincide con uno ya existente, es este el articulo que quieres subir al catalogo? \n");
 						        printf("\n");
@@ -216,6 +406,7 @@ int main (){
 						        printf("1 --> para si \n2 --> para no\n");
 						        scanf("%d", &opcion3);
 						    	
+						    	// Si existe y desea añadir unidades
 						        if (opcion3 == 1) {
 						        	printf("\n");
 						    	    printf("Introoduzca el numero de unidades que quiere subir a vintage clothes de la prenda con numero de referencia %d: \n", nReferencia);
@@ -224,8 +415,21 @@ int main (){
 							    }
 							    // Si existe pero no quieres añadir unidades, puedes volver a poner otro numero de referencia
 								if (opcion3 == 2) {
-									printf("Introduzca un numero de referencia que contenga 4 cifras:\n");
-    				                scanf("%d", &nReferencia);
+									do {
+										// Se comprueba otra vez si existe o no el numero de referencia y no deja continuar hasta que se meta uno que no exista
+										comprobar5 = 0;
+										printf("Introduzca un numero de referencia que contenga 4 cifras:\n");
+    				                    scanf("%d", &nReferencia);
+										for (i = 0; i < nPrendas; i++) {
+											if (nReferencia == catalogo[i].nReferencia) {
+										        comprobar5++;
+										        printf("El numero de referencia ya existe...\n");
+										        fflush(stdin);
+										        printf("\n");
+										    }
+										}
+									} while (comprobar5 != 0);
+									
 						            nPrendas++;
 									nReferencia = catalogo[nPrendas].nReferencia;
 									printf("Introduzca el tipo de prenda: \n");
