@@ -182,6 +182,7 @@ int main (){
 				    		printf("\n");
 				    		printf("Su compra se ha realizado correctamente, gracias por comprar en vintage clothes...\n");
 				    		printf("\n");
+				    		break;
 						}
 					}
 					
@@ -229,14 +230,19 @@ int main (){
 									nReferencia = catalogo[nPrendas].nReferencia;
 									printf("Introduzca el tipo de prenda: \n");
 									scanf("%s", catalogo[nPrendas].tipoPrenda);
+									fflush(stdin);
 									printf("Introduzca una breve descripcion (ejemplo: MangaCorta) en una sola palabra:");
 									scanf("%s", catalogo[nPrendas].descripcion);
+									fflush(stdin);
 									printf("Introduzca el color de la prenda: \n");
 									scanf("%s", catalogo[nPrendas].color);
+									fflush(stdin);
 									printf("Introduzca la talla de la prenda: \n");
 									scanf("%c", &catalogo[nPrendas].talla);
+									fflush(stdin);
 									printf("Introduzca el genero donde quiere que aparezca la prenda (M o H): \n");
 									scanf("%c", &catalogo[nPrendas].genero);
+									fflush(stdin);
 									printf("Introduzca el precio de la prenda: \n");
 									scanf("%f", &catalogo[nPrendas].precio);
 									printf("Introduzca las unidades que quiere subir: \n");
@@ -251,14 +257,19 @@ int main (){
 							nReferencia = catalogo[nPrendas].nReferencia;
 							printf("Introduzca el tipo de prenda: \n");
 							scanf("%s", catalogo[nPrendas].tipoPrenda);
+							fflush(stdin);
 							printf("Introduzca una breve descripcion (ejemplo: MangaCorta) en una sola palabra:");
 							scanf("%s", catalogo[nPrendas].descripcion);
+							fflush(stdin);
 							printf("Introduzca el color de la prenda: \n");
 							scanf("%s", catalogo[nPrendas].color);
+							fflush(stdin);
 							printf("Introduzca la talla de la prenda: \n");
 							scanf("%c", &catalogo[nPrendas].talla);
+							fflush(stdin);
 							printf("Introduzca el genero donde quiere que aparezca la prenda (M o H): \n");
 							scanf("%c", &catalogo[nPrendas].genero);
+							fflush(stdin);
 							printf("Introduzca el precio de la prenda: \n");
 							scanf("%f", &catalogo[nPrendas].precio);
 							printf("Introduzca las unidades que quiere subir: \n");
