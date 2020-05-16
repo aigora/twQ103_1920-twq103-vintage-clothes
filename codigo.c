@@ -195,6 +195,7 @@ int main (){
     				printf("1--> para dar de alta un articulo nuevo.\n2--> para añadir unidades a un articulo ya existente. \n");
     				scanf("%d", &opcion4);
     				if(opcion4 == 1) {
+    					comprobar3 = 0;
     					// Si quieres dar de alta uno nuevo
     					printf("\n");
     					printf("Introduzca un numero de referencia que contenga 4 cifras:\n");
@@ -204,6 +205,7 @@ int main (){
 					    for (i = 0; i < nPrendas; i++) {
 						    if (nReferencia == catalogo[i].nReferencia) {
 						    	// Si existe darte la opcion de añadir unidades
+						    	
 						        printf("El numero de referencia coincide con uno ya existente, es este el articulo que quieres subir al catalogo? \n");
 						        printf("\n");
 						        printf("N DE REFERENCIA    TIPO DE PRENDA\t  DESCRIPCION\t  COLOR\t  TALLA\t  PRECIO      UNIDADES DISPONIBLES\n");
@@ -269,6 +271,7 @@ int main (){
 					
 					// Si quieres añadir unidades de un articulo existente
     				if (opcion4 == 2) {
+    					comprobar2 = 0;
     					do {
     						printf("\n");
     						printf("Introduzca un numero de referencia que contenga 4 cifras al cual quiere aumentar las unidades en stock:\n");
