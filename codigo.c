@@ -143,7 +143,7 @@ int main (){
 					    printf("Por favor ponga el numero de referencia de la prenda que desee comprar: \n ");
 						scanf("%d", &prendas2);
 						
-						if (prendas2 < catalogo[0].nReferencia || prendas2 > catalogo[nPrendas].nReferencia) {
+						if (prendas2 > catalogo[0].nReferencia && prendas2 < catalogo[nPrendas].nReferencia) {
 							printf("\n");
 							printf("El numero de referencia introducido no existe. \n");
 							
@@ -370,7 +370,7 @@ int main (){
 						printf("Por favor ponga el numero de referencia de la prenda que desee comprar: \n ");
 						scanf("%d", &prendas2);
 						
-						if (prendas2 < catalogo[0].nReferencia || prendas2 > catalogo[nPrendas].nReferencia) {
+						if (prendas2 >catalogo[0].nReferencia && prendas2 < catalogo[nPrendas].nReferencia) {
 							printf("\n");
 							printf("El numero de referencia introducido no existe. \n");
 							
@@ -456,7 +456,7 @@ int main (){
 									} while (comprobar5 != 0);
 									
 						            nPrendas++;
-									nReferencia = catalogo[nPrendas].nReferencia;
+								    catalogo[nPrendas].nReferencia = nReferencia  ;
 									printf("Introduzca el tipo de prenda: \n");
 									scanf("%s", catalogo[nPrendas].tipoPrenda);
 									fflush(stdin);
