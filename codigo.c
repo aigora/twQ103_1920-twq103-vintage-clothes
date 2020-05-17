@@ -166,11 +166,17 @@ int main (){
     			
     			case 2:
     				// Vender
-    				
-    				printf("Quiere vender un articulo ya existente en la web o quiere dar de alta un articulo nuevo? \n");
-    				printf("\n");
-    				printf("1--> para dar de alta un articulo nuevo.\n2--> para añadir unidades a un articulo ya existente. \n");
-    				scanf("%d", &opcion4);
+    				do {
+    					printf("Quiere vender un articulo ya existente en la web o quiere dar de alta un articulo nuevo? \n");
+    				    printf("\n");
+    				    printf("1--> para dar de alta un articulo nuevo.\n2--> para añadir unidades a un articulo ya existente. \n");
+    				    scanf("%d", &opcion4);
+    				    if (opcion4 != 1 && opcion4 != 2) {
+    				    	printf("Por favor escoja una opcion... \n");
+    				    	printf("\n");
+						}
+					} while (opcion4 != 1 && opcion4 != 2);
+    			
     				if(opcion4 == 1) {
     					comprobar3 = 0;
     					// Si quieres dar de alta uno nuevo
@@ -189,8 +195,14 @@ int main (){
 						        printf("  %d\t %s\t %s\t %s\t %c\t %.2f\t %d\n", catalogo[i].nReferencia, catalogo[i].tipoPrenda, catalogo[i].descripcion, catalogo[i].color, catalogo[i].talla, catalogo[i].precio, catalogo[i].udDisponibles);
 						        printf("\n");
 						        printf("\n");
-						        printf("1 --> para si \n2 --> para no\n");
-						        scanf("%d", &opcion3);
+						        do {
+						        	printf("1 --> para si \n2 --> para no\n");
+						            scanf("%d", &opcion3);
+						            if (opcion3 != 1 && opcion3 != 2) {
+									    printf("Por favor escoja una opcion... \n");
+    				    	            printf("\n");
+								}  while (opcion3 != 1 && opcion3 != 2);
+						        
 						    	
 						    	// Si existe y desea añadir unidades
 						        if (opcion3 == 1) {
@@ -380,12 +392,18 @@ int main (){
     			
     			case 2:
     				// Vender
-    				
-    				printf("Quiere vender un articulo ya existente en la web o quiere dar de alta un articulo nuevo? \n");
-    				printf("\n");
-    				printf("1--> para dar de alta un articulo nuevo.\n2--> para añadir unidades a un articulo ya existente. \n");
-    				scanf("%d", &opcion4);
-    				if(opcion4 == 1) {
+    				do {
+    					printf("Quiere vender un articulo ya existente en la web o quiere dar de alta un articulo nuevo? \n");
+    				    printf("\n");
+    				    printf("1--> para dar de alta un articulo nuevo.\n2--> para añadir unidades a un articulo ya existente. \n");
+    				    scanf("%d", &opcion4);
+    				    if (opcion4 != 1 && opcion4 != 2) {
+    				    	printf("Por favor escoja una opcion... \n");
+    				    	printf("\n");
+						}
+					} while (opcion4 != 1 && opcion4 != 2);
+					
+					if(opcion4 == 1) {
     					comprobar3 = 0;
     					// Si quieres dar de alta uno nuevo
     					printf("\n");
@@ -403,8 +421,13 @@ int main (){
 						        printf("  %d\t %s\t %s\t %s\t %c\t %.2f\t %d\n", catalogo[i].nReferencia, catalogo[i].tipoPrenda, catalogo[i].descripcion, catalogo[i].color, catalogo[i].talla, catalogo[i].precio, catalogo[i].udDisponibles);
 						        printf("\n");
 						        printf("\n");
-						        printf("1 --> para si \n2 --> para no\n");
-						        scanf("%d", &opcion3);
+						        do {
+						        	printf("1 --> para si \n2 --> para no\n");
+						            scanf("%d", &opcion3);
+						            if (opcion3 != 1 && opcion3 != 2) {
+									    printf("Por favor escoja una opcion... \n");
+    				    	            printf("\n");
+								}  while (opcion3 != 1 && opcion3 != 2);
 						    	
 						    	// Si existe y desea añadir unidades
 						        if (opcion3 == 1) {
