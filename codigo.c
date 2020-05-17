@@ -201,6 +201,7 @@ int main (){
 						            if (opcion3 != 1 && opcion3 != 2) {
 									    printf("Por favor escoja una opcion... \n");
     				    	            printf("\n");
+    				    	        }
 								}  while (opcion3 != 1 && opcion3 != 2);
 						        
 						    	
@@ -427,6 +428,7 @@ int main (){
 						            if (opcion3 != 1 && opcion3 != 2) {
 									    printf("Por favor escoja una opcion... \n");
     				    	            printf("\n");
+    				    	        }
 								}  while (opcion3 != 1 && opcion3 != 2);
 						    	
 						    	// Si existe y desea añadir unidades
