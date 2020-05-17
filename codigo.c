@@ -622,7 +622,7 @@ int menu1(){
 		printf("\n");
 		printf("Seleccione la opcion que desee realizar\n");
 		printf("\n");
-		printf(" Pulse 1---> si quiere registrarse\n Pulse 2---> si ya esta registrado y desea iniciar sesion\n Pulse 3---> si quiere acceder a nuestro catalogo\n pulse 4---> si quiere salir\n");
+		printf(" Pulse 1---> si quiere registrarse\n Pulse 2---> si ya esta registrado y desea iniciar sesion\n Pulse 3---> si quiere acceder a nuestro catalogo\n pulse 4---> si quiere salir y guardar\n");
 		printf("\n");
 		fflush(stdin);
 		scanf("%d",&opcion);
