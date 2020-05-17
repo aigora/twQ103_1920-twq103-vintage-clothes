@@ -633,14 +633,17 @@ int menu1(){
 int menu2(){
 	int opcion;
 	do {
-    	printf("\n");
+    	     printf("\n");
 		printf("Seleccione la opcion que desee realizar\n");
 		printf("\n");
 		printf(" Pulse 1---> si quiere comprar un articulo\n Pulse 2---> si quiere vender un articulo\n ");
 		printf("\n");
 		fflush(stdin);
 		scanf("%d",&opcion);
-			} while (opcion != 1 && opcion != 2);
+		if (opcion != 1 && opcion != 2) {
+			printf("Introduzca un numero del 1 al 2... \n");
+		}
+	} while (opcion != 1 && opcion != 2);
 	
 	return opcion;
 }
