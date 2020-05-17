@@ -314,6 +314,8 @@ int main (){
 					}
 					
     			break;	
+    			case 3:
+    				break;
 			}
 			
 		break;
@@ -540,7 +542,9 @@ int main (){
 						    
 					}
 					
-    			break;	
+    			break;
+				case 3:
+				    break;	
 			}
 			
     	break;
@@ -638,14 +642,13 @@ int menu2(){
     	     printf("\n");
 		printf("Seleccione la opcion que desee realizar\n");
 		printf("\n");
-		printf(" Pulse 1---> si quiere comprar un articulo\n Pulse 2---> si quiere vender un articulo\n ");
+		printf(" Pulse 1---> si quiere comprar un articulo\n Pulse 2---> si quiere vender un articulo\n Pulse 3---> si quiere salir de esta opcion\n ");
 		printf("\n");
-		fflush(stdin);
 		scanf("%d",&opcion);
-		if (opcion != 1 && opcion != 2) {
-			printf("Introduzca un numero del 1 al 2... \n");
+		if (opcion != 1 && opcion != 2 && opcion !=3) {
+			printf("Introduzca un numero del 1 al 3... \n");
 		}
-	} while (opcion != 1 && opcion != 2);
+	} while (opcion != 1 && opcion != 2 && opcion!=3);
 	
 	return opcion;
 }
