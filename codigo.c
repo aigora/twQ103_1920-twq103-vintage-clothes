@@ -548,7 +548,7 @@ int main (){
     		printf("\n");
 		    printf("Esta usted en el catalogo\n");
 		    
-			printf("%d", nPrendas);	
+			//printf("%d", nPrendas);	
 			do {
 				fflush(stdin);
 				printf("\n");
