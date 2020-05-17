@@ -229,8 +229,8 @@ int main (){
 										}
 									} while (comprobar5 != 0);
 									
-						            nPrendas++;
-									nReferencia = catalogo[nPrendas].nReferencia;
+						            
+									catalogo[nPrendas].nReferencia = nReferencia;
 									printf("Introduzca el tipo de prenda: \n");
 									scanf("%s", catalogo[nPrendas].tipoPrenda);
 									fflush(stdin);
@@ -250,6 +250,7 @@ int main (){
 									scanf("%f", &catalogo[nPrendas].precio);
 									printf("Introduzca las unidades que quiere subir: \n");
 									scanf("%d", &catalogo[nPrendas].udDisponibles);
+									nPrendas++;
 								}
 								comprobar3++; 
 						    }
@@ -455,7 +456,7 @@ int main (){
 										}
 									} while (comprobar5 != 0);
 									
-						            nPrendas++;
+						            
 								    catalogo[nPrendas].nReferencia = nReferencia  ;
 									printf("Introduzca el tipo de prenda: \n");
 									scanf("%s", catalogo[nPrendas].tipoPrenda);
@@ -476,6 +477,7 @@ int main (){
 									scanf("%f", &catalogo[nPrendas].precio);
 									printf("Introduzca las unidades que quiere subir: \n");
 									scanf("%d", &catalogo[nPrendas].udDisponibles);
+									nPrendas++;
 								}
 								comprobar3++; 
 						    }
