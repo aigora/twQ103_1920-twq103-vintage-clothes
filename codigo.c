@@ -257,8 +257,8 @@ int main (){
 					    }
 					    // Si no existe te pide los datos de la prenda
 					    if (comprobar3 == 0) {
-					    	nPrendas++;
-							nReferencia = catalogo[nPrendas].nReferencia;
+					    	
+							catalogo[nPrendas].nReferencia = nReferencia;
 							printf("Introduzca el tipo de prenda: \n");
 							scanf("%s", catalogo[nPrendas].tipoPrenda);
 							fflush(stdin);
@@ -278,6 +278,7 @@ int main (){
 							scanf("%f", &catalogo[nPrendas].precio);
 							printf("Introduzca las unidades que quiere subir: \n");
 							scanf("%d", &catalogo[nPrendas].udDisponibles);
+							nPrendas++;
 						}
 					    printf("\n");
 					    printf ("Usted ha registrado un articulo correctamente...\n");
@@ -486,8 +487,8 @@ int main (){
 					    }
 					    // Si no existe te pide los datos de la prenda
 					    if (comprobar3 == 0) {
-					    	nPrendas++;
-							nReferencia = catalogo[nPrendas].nReferencia;
+					    	//nPrendas++;
+							catalogo[nPrendas].nReferencia = nReferencia;
 							printf("Introduzca el tipo de prenda: \n");
 							scanf("%s", catalogo[nPrendas].tipoPrenda);
 							fflush(stdin);
@@ -507,6 +508,8 @@ int main (){
 							scanf("%f", &catalogo[nPrendas].precio);
 							printf("Introduzca las unidades que quiere subir: \n");
 							scanf("%d", &catalogo[nPrendas].udDisponibles);
+							nPrendas++;
+							
 						}
 					    printf("\n");
 					    printf ("Usted ha registrado un articulo correctamente...\n");
